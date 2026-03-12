@@ -46,15 +46,22 @@ function AdminPanel() {
 
   if (loading) return <p style={{ textAlign: "center", marginTop: "50px" }}>Memuat Data User...</p>;
 
-  return (
-    <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
+return (
+    // Tambahkan color: "#333" di pembungkus utama untuk mengunci warna teks
+    <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto", color: "#333" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-        <h2>Panel Manajemen User</h2>
-        <button onClick={() => navigate("/dashboard")} style={{ padding: "8px 16px", cursor: "pointer" }}>Kembali</button>
+        <h2 style={{ color: "#333" }}>Panel Manajemen User</h2>
+        <button 
+          onClick={() => navigate("/dashboard")} 
+          style={{ padding: "8px 16px", cursor: "pointer", backgroundColor: "#f0f0f0", color: "#333", border: "1px solid #ccc", borderRadius: "4px" }}
+        >
+          Kembali
+        </button>
       </div>
       
       <div style={{ overflowX: "auto" }}>
-        <table border="1" style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", textAlign: "center" }}>
+        {/* Tambahkan background white pada table agar teks gelap selalu terlihat */}
+        <table border="1" style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", textAlign: "center", backgroundColor: "white" }}>
           <thead>
             <tr style={{ backgroundColor: "#333", color: "white" }}>
               <th style={{ padding: "12px" }}>Email</th>
@@ -68,21 +75,22 @@ function AdminPanel() {
           <tbody>
             {allUsers.map(u => (
               <tr key={u.id}>
-                <td style={{ padding: "10px", backgroundColor: "#908b8b" }}>{u.email}</td>
-                <td style={{ padding: "10px" }}>
+                {/* Background abu-abu gelap untuk kolom Email agar tetap terbaca */}
+                <td style={{ padding: "10px", backgroundColor: "#e9e9e9", color: "#333" }}>{u.email}</td>
+                <td style={{ padding: "10px", color: "#333" }}>
                   {u.username || "-"} <br/>
-                  <button onClick={() => handleEditField(u.id, "username", u.username)} style={{ fontSize: "10px", marginTop: "5px" }}>Edit</button>
+                  <button onClick={() => handleEditField(u.id, "username", u.username)} style={{ fontSize: "10px", marginTop: "5px", cursor: "pointer", backgroundColor: "#eee", color: "#333", border: "1px solid #999" }}>Edit</button>
                 </td>
-                <td style={{ padding: "10px" }}>
+                <td style={{ padding: "10px", color: "#333" }}>
                   {u.fullName || "-"} <br/>
-                  <button onClick={() => handleEditField(u.id, "fullName", u.fullName)} style={{ fontSize: "10px", marginTop: "5px" }}>Edit</button>
+                  <button onClick={() => handleEditField(u.id, "fullName", u.fullName)} style={{ fontSize: "10px", marginTop: "5px", cursor: "pointer", backgroundColor: "#eee", color: "#333", border: "1px solid #999" }}>Edit</button>
                 </td>
-                <td style={{ padding: "10px", maxWidth: "250px", wordWrap: "break-word" }}>
+                <td style={{ padding: "10px", maxWidth: "250px", wordWrap: "break-word", color: "#333" }}>
                   {u.bio || "-"} <br/>
-                  <button onClick={() => handleEditField(u.id, "bio", u.bio)} style={{ fontSize: "10px", marginTop: "5px" }}>Edit</button>
+                  <button onClick={() => handleEditField(u.id, "bio", u.bio)} style={{ fontSize: "10px", marginTop: "5px", cursor: "pointer", backgroundColor: "#eee", color: "#333", border: "1px solid #999" }}>Edit</button>
                 </td>
                 <td style={{ padding: "10px" }}>
-                   <span style={{ fontWeight: u.role === "admin" ? "bold" : "normal", color: u.role === "admin" ? "purple" : "black" }}>
+                   <span style={{ fontWeight: u.role === "admin" ? "bold" : "normal", color: u.role === "admin" ? "purple" : "#333" }}>
                     {u.role}
                    </span>
                 </td>
@@ -100,7 +108,7 @@ function AdminPanel() {
                       Hapus Akun
                     </button>
                   ) : (
-                    <span style={{ fontSize: "11px", color: "gray" }}>Akun Anda (Aktif)</span>
+                    <span style={{ fontSize: "11px", color: "#777" }}>Akun Anda (Aktif)</span>
                   )}
                 </td>
               </tr>
