@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom"; // 1. Tambahkan Outlet
 import { auth } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute() { // 2. Hapus { children }
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -26,8 +26,8 @@ function ProtectedRoute({ children }) {
     return <Navigate to="/" />;
   }
 
-  // Jika aman, persilakan masuk ke komponen tujuan (Dashboard)
-  return children;
+  // 3. Jika aman, persilakan masuk ke komponen tujuan melalui Outlet
+  return <Outlet />;
 }
 
 export default ProtectedRoute;
