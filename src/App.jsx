@@ -12,21 +12,18 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Rute (Jalan) yang tersedia di aplikasi */}
+        {/* RUTE PUBLIK */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/upload" element={<Upload />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/admin" element={<AdminPanel />} />
 
-        <Route 
-          path="/dashboard" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
+        {/* RUTE TERPROTEKSI (Sistem Induk) */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<AdminPanel />} />
+        </Route>
+
       </Routes>
     </Router>
   );
