@@ -55,11 +55,13 @@ function Dashboard() {
     }
   };
 
-  return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
+return (
+    // Tambahan: Memberi warna teks default #333 pada seluruh kontainer Dashboard agar aman dari mode gelap
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", color: "#333" }}>
       {/* NAVIGATION BAR */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid #eee", paddingBottom: "10px" }}>
-        <h2 style={{ color: "#333" }}>In-Basket Feed</h2>
+        {/* Warna judul dipastikan tetap gelap */}
+        <h2 style={{ color: "#333", margin: 0 }}>In-Basket Feed</h2>
         <div>
           <button onClick={() => navigate("/upload")} style={{ marginRight: "10px", backgroundColor: "#28a745", color: "white", border: "none", padding: "8px 15px", borderRadius: "5px", cursor: "pointer" }}>+ Posting</button>
           <button onClick={() => signOut(auth).then(() => navigate("/"))} style={{ backgroundColor: "#dc3545", color: "white", border: "none", padding: "8px 15px", borderRadius: "5px", cursor: "pointer" }}>Logout</button>
@@ -67,12 +69,12 @@ function Dashboard() {
       </div>
 
       <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "10px" }}>
-        {/* Tombol Profil (Bisa dilihat semua orang) */}
-        <button onClick={() => navigate("/profile")} style={{ padding: "12px", borderRadius: "8px", border: "1px solid #3a579a", cursor: "pointer", backgroundColor: "white" }}>
+        {/* Tombol Profil: Ditambahkan color: "#333" agar kontras dengan background white */}
+        <button onClick={() => navigate("/profile")} style={{ padding: "12px", borderRadius: "8px", border: "1px solid #3a579a", cursor: "pointer", backgroundColor: "white", color: "#333", fontWeight: "bold" }}>
           Lihat Profil & Info User
         </button>
 
-        {/* TOMBOL ADMIN PANEL (Hanya muncul jika userRole === "admin") */}
+        {/* TOMBOL ADMIN PANEL */}
         {userRole === "admin" && (
           <button 
             onClick={() => navigate("/admin")} 
@@ -98,8 +100,11 @@ function Dashboard() {
         <p style={{ textAlign: "center", color: "gray" }}>Belum ada kiriman.</p>
       ) : (
         posts.map((post) => (
-          <div key={post.id} style={{ marginBottom: "30px", border: "1px solid #efefef", borderRadius: "8px", overflow: "hidden", backgroundColor: "white" }}>
-            <div style={{ padding: "12px", display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#fafafa" }}>
+          // Wadah Postingan: Ditambahkan color: "#333" 
+          <div key={post.id} style={{ marginBottom: "30px", border: "1px solid #efefef", borderRadius: "8px", overflow: "hidden", backgroundColor: "white", color: "#333" }}>
+            
+            {/* Header Postingan (Username): Ditambahkan color: "#333" */}
+            <div style={{ padding: "12px", display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#fafafa", color: "#333" }}>
               <strong>@{post.uploaderUsername || "anonim"}</strong>
               {(currentUser.uid === post.uploaderId || userRole === "admin") && (
                 <button 
@@ -110,7 +115,9 @@ function Dashboard() {
                 </button>
               )}
             </div>
+            
             <img src={post.imageUrl} alt="post" style={{ width: "100%", display: "block", minHeight: "200px", backgroundColor: "#f0f0f0" }} />
+            
             <div style={{ padding: "12px", color: "gray", fontSize: "11px", borderTop: "1px solid #efefef" }}>
               {new Date(post.createdAt).toLocaleString("id-ID")}
             </div>
