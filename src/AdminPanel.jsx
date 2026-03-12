@@ -47,10 +47,9 @@ function AdminPanel() {
   if (loading) return <p style={{ textAlign: "center", marginTop: "50px" }}>Memuat Data User...</p>;
 
 return (
-    // Tambahkan color: "#333" di pembungkus utama untuk mengunci warna teks
     <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto", color: "#333" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-        <h2 style={{ color: "#333" }}>Panel Manajemen User</h2>
+        <h2 style={{ color: "#ffffff" }}>Panel Manajemen User</h2>
         <button 
           onClick={() => navigate("/dashboard")} 
           style={{ padding: "8px 16px", cursor: "pointer", backgroundColor: "#f0f0f0", color: "#333", border: "1px solid #ccc", borderRadius: "4px" }}
